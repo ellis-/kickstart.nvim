@@ -38,6 +38,15 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now :)
 --]]
 
+if vim.g.neovide then
+  -- Put anything you want to happen only in Neovide here
+  vim.o.guifont = "CaskaydiaCove Nerd Font:h10"
+  vim.g.neovide_scroll_animation_length = 0.0
+  vim.g.neovide_cursor_animate_in_insert_mode = false
+  vim.g.neovide_cursor_animate_command_line = false
+  
+end
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -59,6 +68,7 @@ if not vim.loop.fs_stat(lazypath) then
   }
 end
 vim.opt.rtp:prepend(lazypath)
+vim.cmd.runtime("mswin.vim")
 
 -- [[ Configure plugins ]]
 -- NOTE: Here is where you install your plugins.
@@ -388,10 +398,10 @@ vim.defer_fn(function()
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = '<c-space>',
-        node_incremental = '<c-space>',
-        scope_incremental = '<c-s>',
-        node_decremental = '<M-space>',
+        init_selection = '<c-s>',
+        node_incremental = '<c-s>',
+        scope_incremental = false, -- '<c-s>',
+        node_decremental = '<c-a>',
       },
     },
     textobjects = {
