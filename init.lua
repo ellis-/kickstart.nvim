@@ -68,7 +68,7 @@ if not vim.loop.fs_stat(lazypath) then
   }
 end
 vim.opt.rtp:prepend(lazypath)
-vim.cmd.runtime("mswin.vim")
+--[[ vim.cmd.runtime("mswin.vim") ]]
 
 -- [[ Configure plugins ]]
 -- NOTE: Here is where you install your plugins.
@@ -239,7 +239,7 @@ require('lazy').setup({
   --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }, {})
 
 -- [[ Setting options ]]
@@ -282,6 +282,8 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+vim.o.relativenumber = true
 
 -- [[ Basic Keymaps ]]
 
@@ -398,10 +400,10 @@ vim.defer_fn(function()
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = '<c-s>',
-        node_incremental = '<c-s>',
-        scope_incremental = false, -- '<c-s>',
-        node_decremental = '<c-a>',
+        init_selection = '<F2>',-- '<M-Space>',
+        node_incremental = '<F2>', --'<M-Space>',
+        scope_incremental = '<c-s>',
+        node_decremental = '<S-F2>',
       },
     },
     textobjects = {
@@ -584,7 +586,7 @@ cmp.setup {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete {},
+    ['<F2>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
